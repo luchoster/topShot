@@ -1,10 +1,11 @@
 import React from 'react'
-import { withSiteData } from 'react-static'
+import { withRouteData } from 'react-static'
+import Markdown from 'react-markdown'
 import LuchoImg from '../assets/images/lucho-m1.png'
 import ProfilePic from '../assets/images/lucho-m1-2.jpg'
 import Footer from '../components/footer'
 
-export default withSiteData(() => (
+export default withRouteData(({ profiles }) => (
   <div>
     {/*wrapper*/}
     <div id="wrapper" className="single-page-wrap">
@@ -20,7 +21,8 @@ export default withSiteData(() => (
             data-bg=""
             data-scrollax="properties: { translateY: '30%' }"
             style={{
-              background: `url(${LuchoImg}) center no-repeat`,
+              background: `url(${profiles[0].data.thumbnail}) center no-repeat`,
+              backgroundSize: 'cover',
             }}
           />
           <div className="overlay" />
@@ -28,7 +30,8 @@ export default withSiteData(() => (
           <div className="container">
             <div className="section-title">
               <h2>
-                Our <span>Awesome</span> <br /> Team
+                Shooter of the <br />
+                <span>Week</span>
               </h2>
               <p>
                 If you are going to use a passage of Lorem Ipsum, you need to be
@@ -36,7 +39,7 @@ export default withSiteData(() => (
                 text.
               </p>
               <div className="horizonral-subtitle">
-                <span>Luchoster</span>
+                <span>{profiles[0].data.nickname}</span>
               </div>
             </div>
             <a href="#sec1" className="custom-scroll-link hero-start-link">
@@ -54,7 +57,7 @@ export default withSiteData(() => (
             style={{ fontSize: '210px', textAlign: 'right' }}
           >
             {' '}
-            <span>//</span> Lucho Suarez
+            <span>//</span> {profiles[0].data.fullName}
           </div>
           <div className="container">
             <div className="row mar-bottom">
@@ -66,27 +69,18 @@ export default withSiteData(() => (
                   >
                     Lucho
                   </div>
-                  <img src={ProfilePic} className="respimg" alt="" />
+                  <img
+                    src={profiles[0].data.profile_img}
+                    className="respimg"
+                    alt=""
+                  />
                 </div>
               </div>
               <div className="col-md-7">
                 <div className="main-about fl-wrap">
-                  <h5>Title</h5>
-                  <h2>Lucho Suarez</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar.
-                    Donec a consectetur nulla. Nulla posuere sapien vitae lectus
-                    suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat.
-                    Curabitur convallis fringilla diam sed aliquam. Sed tempor
-                    iaculis massa faucibus feugiat. In fermentum facilisis
-                    massa, a consequat purus viverra.
-                  </p>
-                  <p>
-                    Aliquam erat volutpat. Curabitur convallis fringilla diam
-                    sed aliquam. Sed tempor iaculis massa faucibus feugiat. In
-                    fermentum facilisis massa, a consequat purus viverra.
-                  </p>
+                  <h5>{profiles[0].data.title}</h5>
+                  <h2>{profiles[0].data.fullName}</h2>
+                  <Markdown source={profiles[0].content} escapeHtml={false} />
                   <div className="bold-title fl-wrap">Skills</div>
                   <div className="fw-skills fl-wrap">
                     <div className="skillbar-box animaper">
