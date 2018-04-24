@@ -11,7 +11,7 @@ collections:
     folder: "src/posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter. 
+    fields: # The fields for each document, usually in front matter.
     # Remove any that aren't needed for posts
       - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
       - {label: "Title", name: "title", widget: "string"}
@@ -19,3 +19,23 @@ collections:
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
       - {label: "Body", name: "body", widget: "markdown"}
+  - name: "profiles" # Used in routes, e.g., /admin/collections/blog
+    label: "Profiles" # Used in the UI
+    folder: "src/profiles" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    editor:
+      preview: false
+    fields: # The fields for each document, usually in front matter.
+    # Remove any that aren't needed for posts
+      - {label: "Layout", name: "layout", widget: "hidden", default: "profiles"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Name", name: "fullName", widget: "string"}
+      - {label: "Nickname", name: "nickname", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Profile Image", name: "profile_img", widget: "image"}
+      - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Skills", name: "skills", widget: list, fields: [{
+        label: Type, name: type, widget: "select", options: ["AR-15", "Handgun", "Shotgun"]
+      }]}
